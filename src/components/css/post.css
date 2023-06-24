@@ -1,0 +1,63 @@
+.postFeed{
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   border-bottom: 2px solid var(--primaryBtncolor);
+    padding:1rem;
+}
+.post-head{
+    display: flex;;
+    align-items: center;
+    gap:1rem;
+    justify-content:space-between;
+}
+.post-head .profile-pic{
+    display: flex;
+    align-items: flex-start;
+    gap:10px;
+}
+.profile-pic .user{
+    font-weight: 700;
+}
+.profile-pic .user p{
+   margin-block-end: 0;
+}
+.profile-pic .user .userName{
+    margin-block-start: 0;
+    color: gray;
+
+}
+.profile-pic .user p span{
+   color: gray;
+   font-weight: 500;
+}
+
+
+.post-head .profile-pic img{
+    align-self: center;
+    width:3rem;
+    border-radius: 50%;;
+}
+
+.post-content p{
+    text-align: left;
+}
+.post-image img{
+    max-width: 30rem;
+    max-height: 20rem;;
+    border-radius:20px;;
+}
+.post-controls{
+    display: flex;
+    gap:2rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color:var(--primaryBtncolor);
+}
+
+
+.likeCount{
+    font-size:20px;
+
+}

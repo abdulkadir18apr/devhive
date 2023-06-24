@@ -3,20 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { makeServer } from "./server";
 import { AuthProvider } from './contexts/AuthContext';
 import { BrowserRouter } from 'react-router-dom';
+import { UserProvider } from './contexts/userContext';
+import { PostProvider } from './contexts/PostContext';
 
 // Call make Server
-makeServer();
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
+    
     <AuthProvider>
-      <App />
+      <PostProvider>
+      <UserProvider>
+          <App />
+        </UserProvider>
+        </PostProvider>
     </AuthProvider>
+    
     </BrowserRouter>
   </React.StrictMode>
 );

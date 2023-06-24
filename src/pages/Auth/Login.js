@@ -18,9 +18,11 @@ export function Login() {
         e.preventDefault();
         if(isLoginRoute){
             await userLogin(credentials) 
+            setCredentials({})
         }
         else{
             await userSignup(credentials);
+            setCredentials({})
         }
     
     }
@@ -42,7 +44,7 @@ export function Login() {
                     }                {
                         !isLoginRoute && <input type="text" name="lastName" id="lastName" placeholder='LAST-NAME' value={credentials?.lastName} onChange={inputChangeHandler} />
                     }
-                    <input type="text" name="userName" id="userName" placeholder='USERNAME' value={credentials?.username} onChange={inputChangeHandler}  />
+                    <input type="text" name="username" id="username" placeholder='USERNAME' value={credentials?.username} onChange={inputChangeHandler}  />
                     {/* <label htmlFor="password">Password:</label> */}
                     <input type="password" name="password" id="password" placeholder='PASSWORD' value={credentials?.password} onChange={inputChangeHandler} />
                     <button className='primaryBtn' onClick={(e)=>LoginButtonClickHandler(e)}>{isLoginRoute?"Login":"Signup"}</button>

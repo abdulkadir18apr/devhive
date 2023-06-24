@@ -1,0 +1,56 @@
+.createPost{
+    display: none;
+    padding:1rem;
+    border: 1px solid gray;
+}
+
+.avatar img{
+    width:3rem;
+    border-radius: 50%;
+    align-self: center;
+}
+.post-content{
+    width: 100%;
+    align-self: flex-start;
+  
+}
+.post-content textarea{
+    width:95%;
+    font-size: 20px;;
+    border:none;
+    outline: none;
+}
+
+.createPost-btn{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap:1rem;
+}
+.createPost-btn button{
+    width:5rem;
+
+    border:none;
+    cursor:pointer;
+}
+.createPost-btn label{
+    cursor: pointer;
+}
+#postImage{
+    display: none;
+}
+.postImage{
+    max-width:10rem;
+    max-height: 10rem;;
+}
+
+@media screen and (min-width:678px) {
+    .createPost{
+        display: flex;
+    }
+    .postImage{
+        max-width:50rem;
+        max-height: 20rem;;
+    }
+    
+}

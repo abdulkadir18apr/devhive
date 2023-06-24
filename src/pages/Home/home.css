@@ -1,0 +1,217 @@
+.home-screen{
+    display: grid;
+    grid-template-columns:0px 0.2fr 1fr;
+}
+.sideNavigation{
+    border-right: 2px solid var(--primaryBtncolor);
+    height: 100vh;
+}
+.posts{
+  height: 94vh;
+    overflow: auto;
+    scroll-behavior:smooth;
+}
+::-webkit-scrollbar {
+    width: 3px; 
+  /* Adjust the width as needed */
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color:white /* Background color of the scrollbar track */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #701a75;
+    border-radius: 40px; /* Color of the scrollbar thumb */
+  }
+.users{
+   
+    border-left:2px solid var(--primaryBtncolor);
+    height: 100vh;
+    padding-top:2rem;
+    padding-left: 2rem;;
+    padding-right: 2rem;;
+    display: flex;
+    flex-direction: column;
+    gap:3rem;
+    align-items: center;
+}
+.search-bar{
+    border-radius: 30px;
+    width:80%;
+    font-weight: 600;
+    font-size: 1rem;
+    outline: none; 
+    border:2px solid var(--primaryBtncolor);
+    padding:12px;;
+}
+
+.search-bar:focus{
+    outline: none; 
+    border:2px solid red;
+}
+.user-suggetion{
+    align-self: stretch;
+    border-radius: 20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    overflow-y: auto;
+    padding:1rem;
+
+   
+}
+.user-details{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:1rem;
+    border-bottom: 2px dotted #701a75;
+}
+.user-details img{
+    width:3rem;
+    border-radius: 50%;
+}
+.user-details .followBtn{
+    width:5rem;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 600;
+}
+.user-details .user{
+    display: flex;
+    align-items: center;
+    gap:1rem;
+}
+.userName :first-child{
+    font-weight: 700;
+    margin-block-end: 0;
+    margin-block-start: 0;
+
+}
+.userName :last-child{
+    font-weight: 500;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    color:gray;
+
+}
+.user-suggetion h1{
+    text-align: left;
+    color: #701a75;
+
+}
+.setting{
+    display: flex;
+    justify-content: flex-end;
+    background-color: #e2e8f0;
+    padding: 0.5rem;
+    color: var(--primaryBtncolor);
+    font-weight: 800;
+    cursor: pointer;
+    font-size: larger;
+}
+.setting-options{
+    display: none;
+    padding: 1rem;
+    width:5rem;
+    position: relative;
+    background-color: #e2e8f0;
+    left:44%;
+    top:0
+}
+.active{
+    display: inline-block;
+}
+.setting-options button{
+    background-color: inherit;
+    border: none;
+    margin-bottom: 10px;
+    color: black;
+    font-weight: 700;
+    cursor: pointer;
+}
+.setting-options button:hover{
+    background-color: black;
+    color: white;
+}
+.postLink a{
+    text-decoration: none;
+    color:black;
+}
+
+.comments{
+  
+    display: flex;
+    flex-direction: column;
+ 
+
+}
+.comments h1{
+    margin-block-end: 0;
+    margin-block-start: 0;
+    color: #701a75;
+   
+}
+.commentBox{
+    text-align: left;
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 2px solid #701a75;
+    gap:1rem;
+    padding: 1rem;;
+
+}
+.commentBox img{
+    width:3rem;
+    align-self: flex-start;
+    border-radius:50%;
+}
+.commentBox-body{
+    align-self: flex-start;
+}
+.commentBox-body h1{
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-size: medium;
+    font-weight: 800;
+    color:var(--primaryBtncolor)
+}
+.commentBox-body h1 span{
+    color: gray;
+    font-weight: 600;
+
+}
+.commentBox-body p{
+    text-align: left;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    font-weight: 500;
+}
+.head{
+    display: flex;
+    align-items: center;
+    gap:2rem;
+    font-size: 30px;
+    padding-left: 1rem;
+    border-bottom: 2px dotted var(--primaryBtncolor);
+}
+
+.head p {
+    margin-block-end: 0;
+    margin-block-start: 0;
+    font-size: 20px;
+    text-align: left;
+}
+.head p:last-of-type{
+    color: gray;
+}
+
+@media screen and (min-width:678px) {
+    .home-screen{
+        display: grid;
+        grid-template-columns: 0.5fr 0.5fr 2fr 1fr 0.5fr ;
+    }
+
+    
+
+    
+}

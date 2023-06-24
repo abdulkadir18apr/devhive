@@ -1,25 +1,23 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { loginService, signupService } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext=createContext();
 
 export const AuthProvider=({children})=>{
-    const [isLogin,setIsLogin]=useState([]);
+    const [isLogin,setIsLogin]=useState(localStorage.getItem('token')?true:false);
     const [profile,setProfile]=useState({});
+    const [user,setUser]=useState({})
     const navigate=useNavigate();
 
     const userLogin=async (credentials)=>{
         try{
             const response=await loginService(credentials);
-            const res=response.data;
-            if(res.encodedToken){
-                const {username,firstName,lastName}=res.foundUser;
-                localStorage.setItem('encodedToken',res.encodedToken);
-                setIsLogin(true);
-                setProfile(()=>({username,firstName,lastName}));
-                navigate("../home")
-            }
+            localStorage.setItem('token',response.authToken);
+            setIsLogin(()=>true);
+            setUser(()=>response.user);
+            localStorage.setItem('user',JSON.stringify(response.user));
+            navigate("/home");
         }
         catch(err){
             alert("try login again");
@@ -30,23 +28,34 @@ export const AuthProvider=({children})=>{
 
     const userSignup=async(credentials)=>{
         try{
-            const res=await signupService(credentials);
-            if(res.data.encodedToken){
-                const {username,firstName,lastName}=res.data.createdUser;
-                localStorage.setItem('encodedToken',res.data.encodedToken);
-                localStorage.setItem('username',res.data.username);
-                setIsLogin(true);
-                setProfile(()=>({username,firstName,lastName}));
-                navigate("../home");
-            }
+            const response=await signupService(credentials);
+            localStorage.setItem('token',response.authToken);
+            setIsLogin(()=>true);
+            setUser(()=>response.user);
+            localStorage.setItem('user',JSON.stringify(response.user));
+            navigate("/home");
+            
         }
         catch(err){
             alert("try signup again");
         }
     }
 
+    const logoutUser=()=>{
+        setIsLogin(false);
+        localStorage.clear();
+
+    }
+
+    useEffect(()=>{
+        if(isLogin){
+           setUser((JSON.parse(localStorage.getItem('user'))))
+        }
+    },[])
+
+
     return(
-        <AuthContext.Provider value={{userLogin,userSignup,isLogin,profile}}>
+        <AuthContext.Provider value={{userLogin,userSignup,isLogin,profile,user,logoutUser,setUser}}>
             {children}
         </AuthContext.Provider>
     )
