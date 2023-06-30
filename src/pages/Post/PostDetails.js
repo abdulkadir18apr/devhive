@@ -4,7 +4,10 @@ import { SideBar } from '../../components/SideBar'
 import { Post } from '../../components/Post'
 import { useUserContext } from '../../contexts/userContext'
 import { usePostContext } from '../../contexts/PostContext'
-import { useParams } from 'react-router-dom'
+import { NavLink, useParams } from 'react-router-dom'
+import { SearchUser } from '../../components/SearchUser'
+import { SuggestedUser } from '../../components/SuggestedUser'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export function PostDetails() {
 
@@ -29,6 +32,15 @@ export function PostDetails() {
     
                 </div>
                 <div className="posts">
+                  <div className="head">
+
+            
+                <NavLink to="/home"><FontAwesomeIcon icon="fa-solid fa-arrow-left" className="arrowIcon" /></NavLink>
+                    <div>
+                    <p>{post?.user?.firstName} {post?.user?.lastName}</p>
+                    </div>
+                    </div>
+      
 
                     <div>
                       <Post postId={post._id} userId={post.user._id} firstName={post.user.firstName} lastName={post.user?.lastName} content={post.content} postImage={post?.postImage} username={post.user.username} profileImage={post?.user?.profile?.profileImage} createdAt={post.createdAt} likeCount={post.likes.likeCount} likedBy={post.likes.likedBy} commentsCount={post.comments.length} />
@@ -52,31 +64,8 @@ export function PostDetails() {
                     
                 </div>
                 <div className="users">
-          
-    
-                  <input type="text" name="" className="search-bar" placeholder='Search users...' />
-                  <div className="user-suggetion">
-                  <h1>Suggested users</h1>
-                  {
-                    userState.suggestedUser.map((user)=>(
-                      <div className="user-details">
-                      <div className="user">
-                      <img src={user?.profile?.profileImage?user.profile.profileImage:"https://picsum.photos/200"} alt="user-profile" srcset="" />
-                      <div className="userName">
-                      <p>{user.firstName}{"  "}{user.lastName}</p>
-                       <p>@{user.username}</p>
-                      </div>
-    
-                      </div>
-                      <button className='primaryBtn followBtn'>Follow</button>
-                    </div>
-    
-                    ))
-                  }
-    
-                  
-                  </div>
-    
+                  <SearchUser/>
+                  <SuggestedUser/>
                 </div>
     
                 <div className="empty"></div>

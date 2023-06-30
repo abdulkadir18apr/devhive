@@ -8,6 +8,7 @@ import { useAuthContext } from '../../contexts/AuthContext'
 import { usePostContext } from '../../contexts/PostContext'
 import { Link } from 'react-router-dom'
 import { SuggestedUser } from '../../components/SuggestedUser'
+import { SearchUser } from '../../components/SearchUser'
 
 export  function Bookmark() {
 
@@ -43,7 +44,7 @@ export  function Bookmark() {
                 <div className="users">
           
     
-                  <input type="text" name="" className="search-bar" placeholder='Search users...' />
+                 <SearchUser/>
                   <SuggestedUser/>
     
                 </div>

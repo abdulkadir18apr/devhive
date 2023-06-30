@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import { postReducer } from "../reducers/postReducer";
 import { useAuthContext } from "./AuthContext";
-import { fetchPostService, postLikeService } from "../services/postService";
+import { fetchPostService, postDeleteService, postLikeService } from "../services/postService";
 
 export const PostContext=createContext();
 
@@ -46,6 +46,13 @@ export const PostProvider=({children})=>{
         }
     }
 
+    const deletePost=async(postId)=>{
+        const res=await postDeleteService(postId);
+        if(res.success){
+            postDispatch({type:"deletePost",payload:postId})
+        }
+    }
+
     const filteredPosts=filterPost([...postState.posts],postState.filter)
 
     useEffect(()=>{
@@ -57,7 +64,7 @@ export const PostProvider=({children})=>{
 
 
     return(
-    <PostContext.Provider value={{postState,postDispatch,filteredPosts,likePost}}>
+    <PostContext.Provider value={{postState,postDispatch,filteredPosts,likePost,deletePost}}>
         {children}
     </PostContext.Provider>)
 

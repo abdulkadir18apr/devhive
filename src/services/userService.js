@@ -108,4 +108,25 @@ export const updateProfileService=async(profileObj)=>{
 
 }
 
+//api to get followeers and following
+
+
+export const fetchUserFollowersService=async(userId)=>{
+  try{
+      const response = await fetch(`${host}/api/users/followers/fetch-followers/${userId}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'auth-token':localStorage.getItem('token')
+          },
+        });
+        const data = await response.json();
+        return data;
+  }
+  catch(err){
+      console.log(err);
+  }
+
+}
+
 

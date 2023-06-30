@@ -1,0 +1,16 @@
+.userModal{
+  display: flex;
+  flex-direction: column;
+    position: absolute;
+    top:40%;
+    left:35%;
+    box-sizing: border-box;
+    min-width: 20%;
+    background-color: var(--secondaryBgColor);
+    border-radius: 10px;
+    border: 2px solid var(--primaryBorderColor);
+    padding: 1rem;
+    max-height:20rem;
+    overflow-x: hidden;
+    overflow-y: auto;
+}

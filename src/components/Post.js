@@ -8,17 +8,23 @@ import { useAuthContext } from '../contexts/AuthContext';
 import { postAddBookmarkService, postRemoveBookmarkService } from '../services/postService';
 import CommmentBox from './CommmentBox';
 import { Link, NavLink } from 'react-router-dom';
+import { EditPostModal } from './EditPostModal';
 
 export  function Post({postId,userId,firstName,lastName,username,createdAt,content,postImage,profileImage,commentsCount,likedBy}) {
 
-    const {likePost}=usePostContext();
+    const {likePost,deletePost}=usePostContext();
     const {user,setUser}=useAuthContext();
     const [isLiked,setisLiked]=useState(likedBy.some((id)=>id===user._id));
-    const [show,setShow]=useState(false)
+    const [show,setShow]=useState(false);
+    const[isEdit,setIsEdit]=useState(false);
+    const[options,setOptions]=useState(false);
+    const isCurrentUserPost=userId===user._id
 
     const postInBookmark=(postId)=>{
         return user.bookmarks.includes(postId);
     }
+
+
 
     
 
@@ -46,6 +52,11 @@ export  function Post({postId,userId,firstName,lastName,username,createdAt,conte
         }
     }
 
+    const deletePostClickHandler=async()=>{
+        await deletePost(postId);
+
+    }
+
   return (
     <div className='postFeed'>
         <div className="post-head">
@@ -57,7 +68,14 @@ export  function Post({postId,userId,firstName,lastName,username,createdAt,conte
             </div>
             </div>
             <div className="options">
-            <FontAwesomeIcon icon="fa-solid fa-ellipsis" />
+           { isCurrentUserPost && <FontAwesomeIcon icon="fa-solid fa-ellipsis" className='ellipsesIcon' onClick={()=>setOptions(!options)} />}
+            {
+                isCurrentUserPost &&  <ul className={`${options?"active":""}`}>
+                <li onClick={()=>setIsEdit(true)}>Edit</li>
+                <li onClick={()=>deletePostClickHandler()}>Delete</li>
+            </ul>
+            }
+           
             </div>
         </div>
           <div className="postLink">
@@ -73,6 +91,9 @@ export  function Post({postId,userId,firstName,lastName,username,createdAt,conte
 
         {
             show && <CommmentBox setShow={setShow} postId={postId} />
+        }
+        {
+            isEdit && <EditPostModal setIsEdit={setIsEdit} isEdit={isEdit} postContent={content} postPic={postImage} postId={postId}/>
         }
 
 

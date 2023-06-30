@@ -1,15 +1,19 @@
 .home-screen{
     display: grid;
     grid-template-columns:0px 0.2fr 1fr;
+    background-color: var(--primaryBgColor);
 }
 .sideNavigation{
-    border-right: 2px solid var(--primaryBtncolor);
+    border-right: 2px solid var(--primaryBorderColor);
     height: 100vh;
 }
 .posts{
   height: 94vh;
     overflow: auto;
     scroll-behavior:smooth;
+}
+.posts h1{
+    color: var(--primaryTextColor);
 }
 ::-webkit-scrollbar {
     width: 3px; 
@@ -21,12 +25,11 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background-color: #701a75;
+    background-color: #205E61;
     border-radius: 40px; /* Color of the scrollbar thumb */
   }
 .users{
-   
-    border-left:2px solid var(--primaryBtncolor);
+    border-left:2px solid var(--primaryBorderColor);
     height: 100vh;
     padding-top:2rem;
     padding-left: 2rem;;
@@ -42,7 +45,7 @@
     font-weight: 600;
     font-size: 1rem;
     outline: none; 
-    border:2px solid var(--primaryBtncolor);
+    border:2px solid var(--primaryBorderColor);
     padding:12px;;
 }
 
@@ -50,22 +53,31 @@
     outline: none; 
     border:2px solid red;
 }
+
+.searchResult{
+    color:var(--primaryTextColor);
+    background-color: var(--secondaryBgColor);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
 .user-suggetion{
+    background-color: var(--secondaryBgColor);
+    color:var(--primaryTextColor);
     align-self: stretch;
     border-radius: 20px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
     overflow-y: auto;
     padding:1rem;
-
-   
 }
 .user-details{
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding:1rem;
-    border-bottom: 2px dotted #701a75;
+    border-bottom: 2px dotted var(--primaryBorderColor);
 }
+
 .user-details img{
     width:3rem;
     border-radius: 50%;
@@ -91,20 +103,20 @@
     font-weight: 500;
     margin-block-end: 0;
     margin-block-start: 0;
-    color:gray;
+    color:#94a3b8;
 
 }
 .user-suggetion h1{
     text-align: left;
-    color: #701a75;
+    color: var(--secondaryTextColor);
 
 }
 .setting{
     display: flex;
     justify-content: flex-end;
-    background-color: #e2e8f0;
+    background-color: var(--secondaryBgColor);
     padding: 0.5rem;
-    color: var(--primaryBtncolor);
+    color: var(--secondaryTextColor);
     font-weight: 800;
     cursor: pointer;
     font-size: larger;
@@ -114,7 +126,8 @@
     padding: 1rem;
     width:5rem;
     position: relative;
-    background-color: #e2e8f0;
+    background-color: var(--secondaryBgColor);
+    color: var(--primaryTextColor);
     left:44%;
     top:0
 }
@@ -148,14 +161,14 @@
 .comments h1{
     margin-block-end: 0;
     margin-block-start: 0;
-    color: #701a75;
+    color: var(--secondaryTextColor);
    
 }
 .commentBox{
     text-align: left;
     display: flex;
     align-items: flex-start;
-    border-bottom: 2px solid #701a75;
+    border-bottom: 2px solid var(--primaryBorderColor);
     gap:1rem;
     padding: 1rem;;
 
@@ -173,10 +186,10 @@
     margin-block-end: 0;
     font-size: medium;
     font-weight: 800;
-    color:var(--primaryBtncolor)
+    color:var(--secondaryTextColor)
 }
 .commentBox-body h1 span{
-    color: gray;
+    color: #94a3b8;
     font-weight: 600;
 
 }
@@ -185,6 +198,7 @@
     margin-block-start: 0;
     margin-block-end: 0;
     font-weight: 500;
+    color: var(--primaryTextColor);
 }
 .head{
     display: flex;
@@ -192,7 +206,11 @@
     gap:2rem;
     font-size: 30px;
     padding-left: 1rem;
-    border-bottom: 2px dotted var(--primaryBtncolor);
+    border-bottom: 2px solid var(--primaryBorderColor);
+    color: var(--secondaryTextColor);
+}
+.arrowIcon{
+    color: var(--secondaryTextColor);
 }
 
 .head p {
@@ -202,7 +220,7 @@
     text-align: left;
 }
 .head p:last-of-type{
-    color: gray;
+    color: #94a3b8;
 }
 
 @media screen and (min-width:678px) {

@@ -2,6 +2,8 @@
     display: none;
     padding:1rem;
     border: 1px solid gray;
+    border: 1px solid gray;
+    background-color: var(--primaryBgColor);
 }
 
 .avatar img{
@@ -19,6 +21,8 @@
     font-size: 20px;;
     border:none;
     outline: none;
+    background-color: inherit;
+    color: var(--secondaryTextColor);
 }
 
 .createPost-btn{
@@ -43,7 +47,27 @@
     max-width:10rem;
     max-height: 10rem;;
 }
+.dropzone{
+    display: flex;
+    justify-content: center ;
+    text-align: center;
+    min-height: 5rem;
+}
+.dropzone p{
+    font-weight: 600;
+    color: var(--secondaryTextColor);
+}
+.dragging{
+    background-color: rgb(186, 222, 237);
 
+}
+.createPost-btn p{
+    font-weight: 600;
+    color: var(--secondaryTextColor);
+    font-style: italic;
+    text-decoration:underline;
+
+}
 @media screen and (min-width:678px) {
     .createPost{
         display: flex;

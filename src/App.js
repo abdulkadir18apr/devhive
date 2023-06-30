@@ -9,23 +9,61 @@ import { Bookmark } from './pages/Bookmark/Bookmark';
 import { Explore } from './pages/Explore/Explore';
 import {PostDetails} from './pages/Post/PostDetails';
 import { Profile } from './pages/Profile/Profile';
+import { RequiresAuth } from './RequiresAuth';
+import { useThemeContext } from './contexts/ThemeContext';
+import { useEffect } from 'react';
+
 
 
 function App() {
+  const {isDark}=useThemeContext();
+  useEffect(()=>{
+    const root = document.documentElement;
+    root.style.setProperty('--primaryBgColor',isDark?'#042f2e':'white');
+    root.style.setProperty('--primaryTextColor',isDark?'white':'black');
+    root.style.setProperty('--secondaryBgColor',isDark?'#1A5F7A':'#f1f5f9');
+    root.style.setProperty('--navbarBgColor',isDark?'#042f2e':'white');
+    root.style.setProperty('--secondaryTextColor',isDark?'white':'#4a044e');
+    root.style.setProperty('--primaryBorderColor',isDark?'white':'#4a044e');
+  },[isDark])
+
   return (
     <div className="App">
-
         <Routes>
           <Route path="/mockman" element={<Mockman/>}/>
           <Route path="/" element={<LandingPage/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/signup" element={<Login/>}/>
-          <Route path="/home" element={<Home/>}/>
-          <Route path="/bookmark" element={<Bookmark/>}/>
-          <Route path="/explore" element={<Explore/>}/>
-          <Route path="/post/:id" element={<PostDetails/>}/>
-          <Route path="/profile" element={<Profile/>}/>
-          <Route path="/profile/:userId" element={<Profile/>}/> 
+          <Route path="/home" element={
+          <RequiresAuth>
+          <Home/>
+          </RequiresAuth>
+          }/>
+          <Route path="/bookmark" element={
+          <RequiresAuth>
+            <Bookmark/>
+            </RequiresAuth>
+          }/>
+          <Route path="/explore" element={
+          <RequiresAuth>
+              <Explore/>
+              </RequiresAuth>
+            }/>
+          <Route path="/post/:id" element={
+          <RequiresAuth>
+            <PostDetails/>
+          </RequiresAuth>
+          }/>
+          <Route path="/profile" element={
+            <RequiresAuth>
+              <Profile/>
+            </RequiresAuth>
+            }/>
+          <Route path="/profile/:userId" element={
+            <RequiresAuth>
+            <Profile/>
+            </RequiresAuth>
+          }/> 
         </Routes>
     </div>
   );

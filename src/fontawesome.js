@@ -18,6 +18,8 @@ import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
+
+
 library.add(faArrowRight);
 library.add(faMoon);
 library.add(faSun);

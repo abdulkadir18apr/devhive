@@ -3,7 +3,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-   border-bottom: 2px solid var(--primaryBtncolor);
+   border-bottom: 2px solid var(--secondaryTextColor);
     padding:1rem;
 }
 .post-head{
@@ -19,13 +19,16 @@
 }
 .profile-pic .user{
     font-weight: 700;
+    color: var(--secondaryTextColor);
 }
 .profile-pic .user p{
    margin-block-end: 0;
+  
 }
 .profile-pic .user .userName{
     margin-block-start: 0;
     color: gray;
+    text-decoration: underline;
 
 }
 .profile-pic .user p span{
@@ -42,6 +45,7 @@
 
 .post-content p{
     text-align: left;
+    color:var(--primaryTextColor);
 }
 .post-image img{
     max-width: 30rem;
@@ -53,11 +57,41 @@
     gap:2rem;
     font-size: 2rem;
     cursor: pointer;
-    color:var(--primaryBtncolor);
+    color:var(--secondaryTextColor);
 }
 
 
 .likeCount{
     font-size:20px;
 
+}
+.ellipsesIcon{
+    color:var(--primaryTextColor)
+}
+.options ul{
+    display: none;
+    background-color: #E2E8F0;
+    margin-block-start: 0;
+    margin-block-end: 0em;
+    padding-inline-start: 0px;
+    padding-inline-start: 0px;
+    padding:10px 1rem;
+    border-radius: 10px;
+}
+
+.options ul li{
+    text-align: left;
+    list-style: none;
+    font-weight: 500;
+    color:var(--primaryBtncolor);
+    cursor: pointer;
+}
+.options ul li:last-child{
+    color:red
+}
+.options  .active{
+    display: block;
+}
+.options :first-child{
+    cursor: pointer;
 }

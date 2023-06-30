@@ -4,11 +4,15 @@ import "./css/profileCard.css";
 import { useAuthContext } from '../contexts/AuthContext';
 import { useUserContext } from '../contexts/userContext';
 import { EditProfileModal } from './EditProfileModal';
+import { useEffect } from 'react';
+import { UserModal } from './UserModal';
 
 
 export default function ProfileCard({profile,setUserProfile}) {
 
     const [show,setShow]=useState(false);
+
+    const [userModal,setUserModal]=useState({status:false,users:''});
 
     const {user}=useAuthContext();
     const {followUser,unfollowUser}=useUserContext();
@@ -34,6 +38,12 @@ export default function ProfileCard({profile,setUserProfile}) {
 
     }
 
+    console.log(profile);
+
+    
+
+
+
 
   return (
     <div className='profile-card'>
@@ -46,8 +56,8 @@ export default function ProfileCard({profile,setUserProfile}) {
             <p>{bio}</p>
             <a href={portfolio} target="_blank">{portfolio}</a>
             <div className="followersBtn">
-            <button>{followersCount} followers</button>
-            <button>{followingCount} following</button>
+            <button onClick={()=>{setUserModal({status:true,users:"followers"})}}>{followersCount} followers</button>
+            <button onClick={()=>{setUserModal({status:true,users:"following"})}}>{followingCount} following</button>
 
             </div>
            
@@ -62,6 +72,11 @@ export default function ProfileCard({profile,setUserProfile}) {
         {
             show && <EditProfileModal setShow={setShow} profile={profile} />
         }
+        {
+            userModal.status && <UserModal users={userModal.users==='followers'?profile.followers:profile.following} setUserModal={setUserModal}/>
+        }
+
+
       
     </div>
   )

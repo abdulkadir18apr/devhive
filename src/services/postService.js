@@ -193,3 +193,52 @@ export const getUSerPostService=async(userId)=>{
 
     }
 }
+
+
+export const postDeleteService=async(postId)=>{
+  
+    try{
+        const response = await fetch(`${host}/api/posts/${postId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-Type': 'application/json',
+              'auth-token':localStorage.getItem('token')
+            }
+          });
+          const data = await response.json();
+          return data;
+    }
+    catch(err){
+        console.log(err);
+
+    }
+}
+
+
+//edit postService
+
+
+export const editPostService=async(postId,postObj)=>{
+
+  const formData=new FormData();
+  formData.append('content',postObj.content);
+  if(postObj?.postImage){
+    formData.append('post-image',postObj.postImage);
+  }
+  try{
+      const response = await fetch(`${host}/api/posts/edit/${postId}`, {
+          method: 'POST',
+          headers: {
+            'auth-token':localStorage.getItem('token')
+          },
+          body:formData,
+        });
+        const data = await response.json();
+        return data;
+  }
+  catch(err){
+      console.log(err);
+
+  }
+}
+

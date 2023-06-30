@@ -11,17 +11,16 @@
 }
 .navList a{
     text-decoration: none;
-    color: var(--primaryBtncolor);
-
 }
 .navList li{
+   
     text-decoration: none;
     list-style:none;
     text-align: left;
     font-size: 20px;
     font-weight: 700;
     padding:10px;
- 
+    color: var(--secondaryTextColor);
 }
 .navList li span{
     margin-left: 2rem;
@@ -40,7 +39,7 @@
 }
 
 .navList a :hover{
-    background-color:#fae8ff;
+    background-color: #fb7185;
     border-radius: 20px;;
 }
 

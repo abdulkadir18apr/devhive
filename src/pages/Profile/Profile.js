@@ -10,17 +10,22 @@ import { Link, NavLink, useParams } from 'react-router-dom'
 import { SuggestedUser } from '../../components/SuggestedUser'
 import ProfileCard from '../../components/ProfileCard'
 import { useState } from 'react'
-import { fetchUserService } from '../../services/userService'
+import { fetchUserFollowers, fetchUserFollowersService, fetchUserService } from '../../services/userService'
 import { useEffect } from 'react'
 import { getUSerPostService } from '../../services/postService'
+import { SearchUser } from '../../components/SearchUser'
 
 export  function Profile() {
 
     const {userId}=useParams();
    
     const {user}=useAuthContext();
+    const {users}=useUserContext();
     const [userProfile,setUserProfile]=useState(!userId?user:[]);
     const [userPost,setUserPost]=useState([]);
+    const [followers,setFollowers]=useState([]);
+    const [following,setFollowing]=useState([]);
+
 
     const fetchUserProfile=async()=>{
         const res=await fetchUserService(userId);
@@ -35,6 +40,16 @@ export  function Profile() {
             setUserPost(()=>res.posts);
         }
     }
+    const fetchuserFollowers=async()=>{
+        const res=await fetchUserFollowersService(userId);
+        if(res.success){
+            setFollowers(()=>res.user.followers);
+            setFollowing(()=>res.user.following);
+        }
+        else{
+            alert('cannot fetch followers');
+        }
+    }
 
     useEffect(()=>{
         if(userId!==undefined){
@@ -46,6 +61,11 @@ export  function Profile() {
         fetchUserPost();
     },[userId,user])
 
+    useEffect(()=>{
+        console.log("FECTHING..")
+        fetchuserFollowers();
+    },[userId,users])
+
 
     const profile={
         userId:userProfile._id,
@@ -56,7 +76,9 @@ export  function Profile() {
         portfolio:userProfile?.profile?.portfolio,
         profileImage:userProfile?.profile?.profileImage?userProfile.profile.profileImage:"https://picsum.photos/200",
         followingCount:userProfile?.following?.length,
-        followersCount:userProfile?.followers?.length
+        followersCount:userProfile?.followers?.length,
+        following:following,
+        followers:followers,
     }
     
 
@@ -72,7 +94,7 @@ export  function Profile() {
                 </div>
                 <div className="posts">
                     <div className="head">
-                    <NavLink to="/home"><FontAwesomeIcon icon="fa-solid fa-arrow-left" /></NavLink>
+                    <NavLink to="/home"><FontAwesomeIcon icon="fa-solid fa-arrow-left" className='arrowIcon' /></NavLink>
                     <div>
                     <p>{profile.firstName} {profile.lastName}</p>
                     <p>{userPost.length} post</p>
@@ -97,7 +119,7 @@ export  function Profile() {
                 <div className="users">
           
     
-                  <input type="text" name="" className="search-bar" placeholder='Search users...' />
+                 <SearchUser/>
                   <SuggestedUser/>
     
                 </div>

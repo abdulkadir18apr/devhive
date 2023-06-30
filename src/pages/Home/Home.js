@@ -10,6 +10,7 @@ import { usePostContext } from '../../contexts/PostContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, NavLink } from 'react-router-dom';
 import { SuggestedUser } from '../../components/SuggestedUser';
+import { SearchUser } from '../../components/SearchUser';
 
 export  function Home() {
 
@@ -57,9 +58,7 @@ export  function Home() {
 
             </div>
             <div className="users">
-      
-
-              <input type="text" name="" className="search-bar" placeholder='Search users...' />
+              <SearchUser/>
               <SuggestedUser/>
            
 
