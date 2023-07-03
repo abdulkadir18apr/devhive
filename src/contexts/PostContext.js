@@ -24,7 +24,7 @@ export const PostProvider=({children})=>{
     const filterPost=(posts,filter)=>{
         
         if(filter===""){
-            return posts;
+            return posts.reverse();
         }
         if(filter==='trending'){
             return posts.sort((a,b)=>b.likes-a.likes);
