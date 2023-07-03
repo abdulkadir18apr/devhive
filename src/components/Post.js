@@ -100,7 +100,7 @@ export  function Post({postId,userId,firstName,lastName,username,createdAt,conte
        
         <div className="post-controls">
         <p><FontAwesomeIcon icon={`fa-${isLiked?"solid":"regular"} fa-heart`} onClick={likePostClickHandler} /><span className='likeCount'>{likedBy.length}</span></p>
-        <p><FontAwesomeIcon icon="fa-solid fa-comment" onClick={()=>setShow(true)}/><span className='likeCount'>{commentsCount}</span></p>
+        <p><FontAwesomeIcon icon="fa-solid fa-comment" onClick={()=>setShow((prev)=>!prev)}/><span className='likeCount'>{commentsCount}</span></p>
         <p><FontAwesomeIcon icon={ `fa-${postInBookmark(postId)?"solid":"regular"} fa-bookmark`} onClick={bookmarkClickHandler} /></p>
         </div>
       

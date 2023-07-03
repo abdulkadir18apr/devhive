@@ -7,6 +7,7 @@ import { useUserContext } from '../contexts/userContext';
 import { useAuthContext } from '../contexts/AuthContext';
 import { NavLink } from 'react-router-dom';
 import { useThemeContext } from '../contexts/ThemeContext';
+import { SearchUser } from './SearchUser';
 
 export  function Navbar() {
   const {user}=useAuthContext();
@@ -21,6 +22,8 @@ export  function Navbar() {
         <div className="navbar-profile">
         <button className='themeIcon'><FontAwesomeIcon icon={`fa-solid fa-${isDark?"sun":"moon"} icon`} onClick={()=>toggleTheme()} /></button>
         <NavLink to={`/profile/${user._id}`}><img src={user?.profile?.profileImage?user?.profile?.profileImage:"https://picsum.photos/200"} alt="profile" srcset="" /></NavLink>
+
+      
         </div>
     </div>
   )

@@ -16,10 +16,12 @@ export  function Home() {
 
   const {userState}=useUserContext();
   const {postState,filteredPosts,postDispatch}=usePostContext();
-  const [settingActive,setSettingActive]=useState(false)
+  const [settingActive,setSettingActive]=useState(false);
+  const [filters,setFilters]=useState("Latest")
   console.log(filteredPosts);
 
   const postFilterHandler=(e)=>{
+    setFilters(e.target.value);
     postDispatch({type:"setFilters",payload:e.target.value});
     setSettingActive(false)
   }
@@ -39,6 +41,7 @@ export  function Home() {
               <CreatePost/>
 
               <div className="setting">
+                <p>{filters.toUpperCase() + " POSTS"}</p>
                 <FontAwesomeIcon icon="fa-solid fa-sliders" onClick={()=>setSettingActive((prev)=>!prev)} />    
               </div>
               <div className={`setting-options ${settingActive?"active":""}`}>

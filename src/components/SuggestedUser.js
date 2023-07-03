@@ -10,6 +10,7 @@ export  function SuggestedUser() {
   return (
     <div className="user-suggetion">
     <h1>Suggested users</h1>
+    <div id="mobile-users">
     {
       userState.suggestedUser.map((user)=>(
        <div>
@@ -18,6 +19,7 @@ export  function SuggestedUser() {
 
       ))
     }
+    </div>
     </div>
   )
 }

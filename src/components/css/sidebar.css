@@ -1,13 +1,27 @@
 .sidebar{
-    margin: 2rem -1rem;
+    margin: 2rem 0rem;
     display: flex;
     justify-content: flex-start;
+
+    /* mobile */
+    position:fixed;
+    left:0;
+    right: 0;
+    bottom: -5%  ;
+    z-index: 999;
+    background: var(--secondaryBgColor);
+    /* mobile */
+
 }
 .navList{
     display: flex;
-    flex-direction: column;
-    width: max-content;
-    gap:2rem;
+    /* mobile */
+    flex-direction: row;
+    justify-content: space-between;
+    padding-inline-start: 0px;
+    width: 100%;
+
+    /* mobile */
 }
 .navList a{
     text-decoration: none;
@@ -27,16 +41,7 @@
     display: none;
 }
 
-@media screen and (min-width:1024) {
-    .sidebar{
-        justify-content: center;
-    }
-    .navList li span{
-        margin-left: 3rem;
-        display: initial;
-    }
-    
-}
+
 
 .navList a :hover{
     background-color: #fb7185;
@@ -44,13 +49,30 @@
 }
 
 
+
+
 @media screen and (min-width:678px) {
+    .sidebar{
+        justify-content: center;
+        position: unset;
+        background-color: var(--primaryBgColor);
+    }
+    .navList{
+        flex-direction: column;
+        width: max-content;
+        gap:2rem;
+    }
+ 
+}
+
+
+@media screen and (min-width:1080px) {
     .sidebar{
         justify-content: center;
     }
     .navList li span{
-        margin-left: 1rem;
+        /* margin-left: 3rem; */
         display: initial;
+      
     }
-    
 }

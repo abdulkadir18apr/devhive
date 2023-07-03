@@ -67,15 +67,16 @@ export  function EditProfileModal({setShow,profile}) {
             </label>
         </div>
         <div className="edit-feilds">
-            <label htmlFor="bio">
-                <span>Bio</span>
-                <textarea name="bio" id="bio" value={profileInput.bio}  onChange={(e)=>profileInputChangeHandler(e)} ></textarea>
-            </label>
-        </div>
-        <div className="edit-feilds">
+           
             <label htmlFor="portfolio">
                 <span>Portfolio</span>
                 <input type="text" name="portfolio" id="portfolio" value={profileInput.portfolio}  onChange={(e)=>profileInputChangeHandler(e)}/>
+            </label>
+        </div>
+        <div className="edit-feilds">
+        <label htmlFor="bio">
+                <span>Bio</span>
+                <input type="text" name="bio" id="bio" cols={10} rows={4} value={profileInput.bio}  onChange={(e)=>profileInputChangeHandler(e)} />
             </label>
         </div>
     </div>

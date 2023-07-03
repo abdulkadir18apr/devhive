@@ -1,7 +1,7 @@
 :root{
   --primaryColor:#e879f9;
   --secondaryColor:#fae8ff;
-  --primaryBtncolor:#4a044e;
+ 
   --secondaryBtnColor:#e879f9;
 }
 body {
@@ -12,7 +12,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 code {
@@ -29,4 +28,11 @@ code {
   border:none;
   border-radius: 20px;  
   cursor: pointer;
+}
+
+@media screen and (min-width:678px) {
+  body{
+    overflow: hidden;
+  }
+  
 }

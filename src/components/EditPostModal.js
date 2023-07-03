@@ -13,3 +13,4 @@ export  function EditPostModal({isEdit, setIsEdit,postContent,postPic,postId}) {
     </div>
   )
 }
+

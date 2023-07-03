@@ -1,13 +1,17 @@
 .comment-box{
     display: flex;
     gap:1rem;
-   width:30%;
+    max-width:80%;
     flex-direction: column;
-    position: absolute;
-    z-index: 1;
-    left:30%;
+    position: relative;
+    z-index: 2;
+    top:0%; 
+    left:10%;
+    border:1px solid green;
+
+    /* left:30%;
     right: 0;
-    top:30%;
+    top:30%; */
     padding: 1rem;;
     background-color: var(--secondaryBgColor);
     border-radius: 20px;

@@ -27,7 +27,7 @@ export const PostProvider=({children})=>{
             return posts;
         }
         if(filter==='trending'){
-            return posts.filter((post)=>post.likes?.likeCount>5);
+            return posts.sort((a,b)=>b.likes-a.likes);
         }
         if(filter==='latest'){
             return posts.sort((a,b)=>new Date(Date.parse(b.createdAt))-new Date(Date.parse(a.createdAt)));

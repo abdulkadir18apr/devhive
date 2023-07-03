@@ -1,12 +1,24 @@
 .profile-card{
     display: grid;
-    grid-template-columns: 1fr 1fr 2rem 10rem;
+    grid-template-columns: 0.5fr 1fr ;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 20px 30px;
     background-color: var(--secondaryBgColor);
     padding:1rem;;
     grid-column-gap: 10px;
     color: var(--primaryTextColor);
 }
+/* mobile */
+.profile-card .empty{
+    display: none;
+}
+.profileBtn{
+    position: relative;
+    bottom: 120%;
+    right:2%;
+}
+
+
+/* mobile */
 .profile-pic{
     align-self: center; 
 }
@@ -60,4 +72,19 @@
     text-decoration: underline;
     font-weight: 500;
 
+}
+
+
+@media screen and (min-width:1404px) {
+    .profile-card{
+        grid-template-columns:1fr 1fr 2rem 10rem;
+    }
+    .profile-card .empty{
+        display: block;
+    }
+    .profileBtn{
+        position: unset;
+        left:0
+    }
+    
 }
