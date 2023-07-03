@@ -7,7 +7,6 @@
 .sideNavigation{
 }
 .posts{
- 
     overflow: auto;
     scroll-behavior:smooth;
 }

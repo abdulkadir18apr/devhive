@@ -1,5 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useRef, useState } from 'react'
+import data from '@emoji-mart/data'
+import Picker from '@emoji-mart/react'
+
+
 
 import "./css/createPost.css";
 import { createPostService, editPostService } from '../services/postService';
@@ -12,6 +16,8 @@ export function CreatePost({ postId, isEdit=false,setIsEdit , postContent = "", 
   const [postImage, setPostImage] = useState(isEdit ? postPic : null);
   const [image, setImage] = useState(isEdit ? postPic : null);
   const [dragging, setDragging] = useState(false);
+  const [isEmoji,setISEmoji]=useState(false);
+  const contentRef=useRef(null)
 
   
 
@@ -104,7 +110,16 @@ export function CreatePost({ postId, isEdit=false,setIsEdit , postContent = "", 
     setPostImage(null);
     setImage(null)
   }
+  const handleEmojiKeyboard=(e)=>{
+    e.stopPropagation();
+    setISEmoji((prev)=>!prev)
+  }
 
+  const emojiSelectHandler=(e)=>{
+    const {selectionStart,selectionEnd}=contentRef.current;
+    const newContent=content.substring(0,selectionStart) + e.native + content.substring(selectionEnd);
+    setContent(()=>newContent);
+  }
 
 
 
@@ -114,7 +129,7 @@ export function CreatePost({ postId, isEdit=false,setIsEdit , postContent = "", 
         <img src={user?.profile?.profileImage || "https://picsum.photos/200"} alt="PROFILE" srcset="" />
       </div>
       <div className="post-content">
-        <textarea name="post" id="" cols="30" rows="5" placeholder='Start Writng Your Ideas' value={content} onChange={handleInputChange} ></textarea>
+        <textarea  ref={contentRef} name="post" id=""  placeholder='Start Writng Your Ideas' value={content} onChange={handleInputChange} ></textarea>
         <div className={`dropzone ${dragging ? "dragging" : ""}`} onDragEnter={handleDragEnter} onDragLeave={handleDragLeave} onDragOver={handleDragOver} onDrop={handleDrop} >
       
 
@@ -144,14 +159,15 @@ export function CreatePost({ postId, isEdit=false,setIsEdit , postContent = "", 
         <div className="createPost-btn">
           <p>Characters: {content.length}</p>
           <p>Words: {content !== "" ? content.trim().split(" ").length : "0"}</p>
+          <FontAwesomeIcon icon="fa-solid fa-face-smile" size='xl' onClick={handleEmojiKeyboard}/>
+        
         { !isEdit && <label htmlFor='postImage'>
             <FontAwesomeIcon icon="fa-solid fa-image" size='2xl' />
             <input type="file" name="postImage" id="postImage" onChange={handleFileChange} />
           </label>}
           <button className='primaryBtn' onClick={postSubmitHandler} value={postImage}>{isEdit ? "Save" : "Post"}</button>
-
         </div>
-
+        {isEmoji && <Picker data={data}  onEmojiSelect={emojiSelectHandler}  onClickOutside={()=>setISEmoji(()=>false)} />}
       </div>
 
     </div>

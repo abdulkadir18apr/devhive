@@ -3,11 +3,12 @@
     flex-direction: column;
     position: absolute;
     /* mobile */
-    top:30%;
+    top:10%;
     left:1rem;
     /* mobile */
     box-sizing: border-box;
     min-width: 20%;
+    z-index: 1000;
 
     background-color: #a5b4fc;
     border-radius: 20px;;
@@ -44,9 +45,9 @@
     right: 10%;
     border: 50%;
     color: white;
-
     cursor: pointer;
 }
+
 
 #profileImage{
     display: none;

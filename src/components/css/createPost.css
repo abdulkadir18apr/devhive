@@ -1,23 +1,30 @@
 .createPost{
-    display: none;
-    padding:1rem;
-    border: 1px solid gray;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding:10px 1rem;
     border: 1px solid gray;
     background-color: var(--primaryBgColor);
 }
+.avatar{
+    align-self: flex-start;
+}
 
 .avatar img{
+   
     width:3rem;
     border-radius: 50%;
     align-self: center;
 }
 .post-content{
+    align-self: flex-start;
     width: 100%;
     align-self: flex-start;
   
 }
 .post-content textarea{
-    width:95%;
+    width:calc(100% - 3rem);
+    height: 3rem;;
     font-size: 20px;;
     border:none;
     outline: none;
@@ -72,9 +79,12 @@
     .createPost{
         display: flex;
     }
-    .postImage{
+    .post-content textarea{
+        height: 5rem;
+    }
+    /* .postImage{
         max-width:50rem;
         max-height: 20rem;;
-    }
+    } */
     
 }

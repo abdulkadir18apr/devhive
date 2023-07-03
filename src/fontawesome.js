@@ -16,6 +16,7 @@ import { faSliders } from '@fortawesome/free-solid-svg-icons';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { faCamera } from '@fortawesome/free-solid-svg-icons';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import {faFaceSmile } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -37,4 +38,5 @@ library.add(faSliders);
 library.add(faArrowLeft);
 library.add(faCamera);
 library.add(faXmark);
+library.add(faFaceSmile);
 
