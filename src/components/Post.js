@@ -12,6 +12,30 @@ import { EditPostModal } from './EditPostModal';
 
 export  function Post({postId,userId,firstName,lastName,username,createdAt,content,postImage,profileImage,commentsCount,likedBy}) {
 
+    const postDate=(Date.parse(createdAt));
+    const currDate=(Date.parse(new Date()));
+
+    const postTime=()=>{
+        const ms=currDate-postDate;
+        const sec=ms/1000;
+        if(sec<60){
+            return Math.ceil(sec) + "s ago"
+        }
+        const min=sec/60;
+        if(min<60){
+            return Math.ceil(min) + "m ago"
+        }
+        const hrs=min/60;
+        if(hrs<24){
+            return Math.ceil(hrs) + "h ago"
+        }
+        return -1;
+    }
+
+    const time=postTime();
+    
+
+
     const {likePost,deletePost}=usePostContext();
     const {user,setUser}=useAuthContext();
     const [isLiked,setisLiked]=useState(likedBy.some((id)=>id===user._id));
@@ -63,7 +87,7 @@ export  function Post({postId,userId,firstName,lastName,username,createdAt,conte
             <div className="profile-pic">
                 <NavLink to={`/profile/${userId}`}><img src={profileImage?profileImage:"https://picsum.photos/200"} alt="profile" srcset="" /></NavLink>
                 <div className="user">
-                <p>{firstName}{"  "} {lastName}  <span>{createdAt?.split('T')[0]}</span> </p>
+                <p>{firstName}{"  "} {lastName}  <span>{time===-1?createdAt?.split('T')[0] : time }</span> </p>
                 <NavLink to={`/profile/${userId}`}><p className='userName'>@{username}</p></NavLink>
             </div>
             </div>

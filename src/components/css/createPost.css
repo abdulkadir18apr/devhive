@@ -78,6 +78,7 @@
 @media screen and (min-width:678px) {
     .createPost{
         display: flex;
+        flex-wrap: nowrap;
     }
     .post-content textarea{
         height: 5rem;
