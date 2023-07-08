@@ -12,6 +12,9 @@ import { Profile } from './pages/Profile/Profile';
 import { RequiresAuth } from './RequiresAuth';
 import { useThemeContext } from './contexts/ThemeContext';
 import { useEffect } from 'react';
+import { ToastContainer } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -65,6 +68,8 @@ function App() {
             </RequiresAuth>
           }/> 
         </Routes>
+        <ToastContainer position="top-right" autoClose={2000}  newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover/>
+
     </div>
   );
 }

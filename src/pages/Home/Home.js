@@ -11,11 +11,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, NavLink } from 'react-router-dom';
 import { SuggestedUser } from '../../components/SuggestedUser';
 import { SearchUser } from '../../components/SearchUser';
+import { Loader } from '../../components/Loader';
 
 export  function Home() {
 
   const {userState}=useUserContext();
   const {postState,filteredPosts,postDispatch}=usePostContext();
+  const {postLoading}=postState;
   const [settingActive,setSettingActive]=useState(false);
   const [filters,setFilters]=useState("Latest")
   console.log(filteredPosts);
@@ -49,8 +51,12 @@ export  function Home() {
                 <button value={"latest"} onClick={postFilterHandler}>Latest</button>
                 <button value={"oldest"} onClick={postFilterHandler}>Oldest</button>
               </div>
+              {
+                postLoading && <Loader/>
+              }
 
              {
+
               filteredPosts.map((post)=>(
                 <div>
                   <Post postId={post._id} userId={post.user._id} firstName={post.user.firstName} lastName={post.user?.lastName} content={post.content} postImage={post?.postImage} username={post.user.username} profileImage={post.user?.profile?.profileImage} createdAt={post.createdAt} likeCount={post.likes.likeCount} likedBy={post.likes.likedBy} commentsCount={post?.comments?.length}  />

@@ -5,6 +5,7 @@ import "./css/commentBox.css";
 import { useState } from 'react';
 import { postCommentService } from '../services/postService';
 import { usePostContext } from '../contexts/PostContext';
+import { toast } from 'react-toastify';
 
 export default function CommmentBox({setShow,postId}){
 
@@ -16,19 +17,17 @@ export default function CommmentBox({setShow,postId}){
     const commentBtnHandler=async()=>{
         if(comment===undefined || comment==="")
         {
-            alert("please write something")
+            toast("please write something")
         }
         else{
            const res=await postCommentService(postId,comment);
-           console.log(res)
            if(res.success){
-            const payload={...res.post}
             postDispatch({type:"addComment",payload:res.post})
-            alert("Comment Added");
             setShow(false);
+            toast("Comment Added")
            }
            else{
-            alert("something went wrong");
+            toast("something went wrong");
            }
         
         }

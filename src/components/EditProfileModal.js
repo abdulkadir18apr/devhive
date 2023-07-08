@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import "./css/editProfileModal.css";
 import { updateProfileService } from '../services/userService';
 import { useAuthContext } from '../contexts/AuthContext';
+import { toast } from 'react-toastify';
 
 
 
@@ -22,9 +23,12 @@ export  function EditProfileModal({setShow,profile}) {
         if(res.success){
             setUser(()=>res.user);
             localStorage.setItem('user',JSON.stringify(res.user));
-            alert("Profile Updated")
+            toast("Profile Updated")
             setShow(()=>false);
 
+        }
+        else{
+            toast("something went wrong")
         }
         
     }

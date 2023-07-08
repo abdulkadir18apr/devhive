@@ -11,14 +11,17 @@ export const PostProvider=({children})=>{
 
     const [postState,postDispatch]=useReducer(postReducer,{
         posts:[],
-        filter:""
+        filter:"",
+        postLoading:true,
     })
 
     const fetchPosts=async()=>{
         const res=await fetchPostService();
+       
         if(res.success){
             postDispatch({type:"setPosts",payload:[...res.posts]});
         }
+        unSetPostLoading();
     }
 
     const filterPost=(posts,filter)=>{
@@ -40,17 +43,30 @@ export const PostProvider=({children})=>{
     }
 
     const likePost=async(postId)=>{
+        setPostLoading();
         const res=await postLikeService(postId);
         if(res){
            postDispatch({type:"likePost",payload:res.post})
         }
+        unSetPostLoading();
     }
 
     const deletePost=async(postId)=>{
+
         const res=await postDeleteService(postId);
-        if(res.success){
+        if(res?.success){
             postDispatch({type:"deletePost",payload:postId})
         }
+      
+    }
+
+    const setPostLoading=()=>{
+        postDispatch({type:"setPostLoading"})
+
+    }
+    const unSetPostLoading=()=>{
+        postDispatch({type:"unSetPostLoading"})
+
     }
 
     const filteredPosts=filterPost([...postState.posts],postState.filter)

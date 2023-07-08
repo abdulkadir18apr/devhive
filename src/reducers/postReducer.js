@@ -31,6 +31,15 @@ export const postReducer=(state,action)=>{
             return {
                 ...state,posts:[...state.posts.map((post)=>post._id===payload.id?{...payload.post}:post)]
             }
+
+        case "unSetPostLoading":
+            return {
+                ...state,postLoading:false
+            }
+        case "setPostLoading":
+            return {
+                ...state,postLoading:true
+            }
         default:
             return state;
 

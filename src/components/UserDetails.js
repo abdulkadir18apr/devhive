@@ -2,6 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useAuthContext } from '../contexts/AuthContext'
 import { useUserContext } from '../contexts/userContext';
+import { toast } from 'react-toastify';
 
 export  function UserDetails({user}) {
     const {user:currUser}=useAuthContext();
@@ -12,11 +13,14 @@ export  function UserDetails({user}) {
     const followBtnClcikHandler=async(e)=>{
 
         if(isFollower){
-            await unfollowUser(e.target.value)
+            await unfollowUser(e.target.value);
+            toast.success('User unfollowed successfully!');
+
 
         }
         else{
             await followUser(e.target.value);
+            toast.success("'User followed successfully!'")
 
         }
        

@@ -14,6 +14,7 @@ import { fetchUserFollowers, fetchUserFollowersService, fetchUserService } from 
 import { useEffect } from 'react'
 import { getUSerPostService } from '../../services/postService'
 import { SearchUser } from '../../components/SearchUser'
+import { Loader } from '../../components/Loader'
 
 export  function Profile() {
 
@@ -25,18 +26,20 @@ export  function Profile() {
     const [userPost,setUserPost]=useState([]);
     const [followers,setFollowers]=useState([]);
     const [following,setFollowing]=useState([]);
+    const [loading,setLoading]=useState(true);
 
 
     const fetchUserProfile=async()=>{
         const res=await fetchUserService(userId);
-        if(res.success){
+        if(res){
             setUserProfile(()=>res.user);
         }
+        setLoading(false)
     }
 
     const fetchUserPost=async()=>{
         const res=await getUSerPostService(userId);
-        if(res.success){
+        if(res){
             setUserPost(()=>res.posts);
         }
     }
@@ -83,6 +86,10 @@ export  function Profile() {
     
 
     return (
+        <>
+        {
+            loading && <Loader/>
+        }
         <div className='home'>
             <Navbar/>
             <div className="home-screen">
@@ -131,5 +138,6 @@ export  function Profile() {
             
           
         </div>
+        </>
       )
 }

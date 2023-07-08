@@ -9,6 +9,7 @@ import { postAddBookmarkService, postRemoveBookmarkService } from '../services/p
 import CommmentBox from './CommmentBox';
 import { Link, NavLink } from 'react-router-dom';
 import { EditPostModal } from './EditPostModal';
+import { toast } from 'react-toastify';
 
 export  function Post({postId,userId,firstName,lastName,username,createdAt,content,postImage,profileImage,commentsCount,likedBy}) {
 
@@ -55,6 +56,7 @@ export  function Post({postId,userId,firstName,lastName,username,createdAt,conte
     const likePostClickHandler=async()=>{
         await likePost(postId);
         setisLiked(true);
+        toast("Glad! you liked a post")
     }
     const bookmarkClickHandler=async()=>{
         if(postInBookmark(postId)){
@@ -62,7 +64,9 @@ export  function Post({postId,userId,firstName,lastName,username,createdAt,conte
             if(res.success){
                 setUser(()=>res.user);
                 localStorage.setItem('user',JSON.stringify(res.user));
+                toast('Removed From Bookmarks')
             }
+
 
         }
         else{
@@ -70,6 +74,7 @@ export  function Post({postId,userId,firstName,lastName,username,createdAt,conte
             if(res.success){
                 setUser(()=>res.user);
                 localStorage.setItem('user',JSON.stringify(res.user));
+                toast("Bookmarked")
               
             }
 
@@ -78,6 +83,7 @@ export  function Post({postId,userId,firstName,lastName,username,createdAt,conte
 
     const deletePostClickHandler=async()=>{
         await deletePost(postId);
+        toast("post delete sucessfully");
 
     }
 

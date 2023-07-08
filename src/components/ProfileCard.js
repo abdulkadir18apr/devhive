@@ -46,7 +46,10 @@ export default function ProfileCard({profile,setUserProfile}) {
 
 
   return (
+    <>
     <div className='profile-card'>
+
+      
         <div className="profile-pic">
             <img src={profileImage} alt="profileImage " srcset="" />
         </div>
@@ -79,5 +82,6 @@ export default function ProfileCard({profile,setUserProfile}) {
 
       
     </div>
+</>
   )
 }
