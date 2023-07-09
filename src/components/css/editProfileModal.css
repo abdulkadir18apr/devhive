@@ -35,6 +35,7 @@
 
 .profileImage img{
     width: 8rem;
+    height: 8rem;
     border-radius:50%;
     border:2px solid var(--primaryBtncolor)
 }

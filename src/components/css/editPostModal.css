@@ -13,3 +13,21 @@
         color: red;
         cursor: pointer
 }
+
+.upload-menu{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute; 
+    top:40%;
+    left:50%;
+    background-color: #A5B4FC;
+    margin-inline-end: 0;
+    margin-inline-start: 0;
+}
+.upload-menu li{
+    list-style: none;
+    border: 1px solid white;
+    cursor: pointer;
+    color: var(--secondaryTextColor);
+}
